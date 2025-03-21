@@ -3,7 +3,40 @@ import pandas as pd
 import plotly.express as px
 
 # Configuração da página
-st.set_page_config(page_title="Business Pro Analytics", page_icon="📈", layout="wide")
+st.title("📈 Business Pro Analytics")
+st.subheader("Transforme seus dados em decisões estratégicas!")
+
+st.markdown(
+    """
+    Este aplicativo foi desenvolvido para ajudar pequenos empreendedores e autônomos a compreender seus 
+    dados de vendas de forma intuitiva através de dashboards interativos.
+
+    **Para começar, carregue um arquivo Excel (.xlsx) contendo os seguintes dados mínimos:**
+    - 📅 **Coluna de Data:** Indica a data da transação ou evento.
+    - 💰 **Coluna de Valores:** Representa o faturamento ou montante da transação.
+    - 🛍 **Coluna de Produtos:** Nome ou categoria do produto vendido.
+    - 🏷 **Coluna de Categoria:** (Opcional) Para análise segmentada por tipo de produto ou serviço.
+
+    **🔹 Exemplo de Estrutura do Arquivo:**
+    | Data       | Produto    | Categoria  | Valor  |
+    |-----------|-----------|-----------|--------|
+    | 2024-03-01 | Camiseta  | Vestuário | 50.00  |
+    | 2024-03-02 | Calça     | Vestuário | 80.00  |
+    | 2024-03-05 | Notebook  | Eletrônicos | 3500.00  |
+
+    **📌 O que você pode fazer com este app?**
+    - 📊 Visualizar métricas importantes como faturamento total e ticket médio.
+    - 📈 Explorar estatísticas para entender a distribuição dos seus valores.
+    - 🔍 Analisar tendências ao longo do tempo e segmentadas por categoria.
+    - ⏳ Filtrar períodos específicos para identificar sazonalidades.
+    
+    **Dica Adicional:**
+    Se o seu arquivo possuir colunas extras ou nomes diferentes, use as opções na barra lateral para configurar corretamente o mapeamento das colunas.
+
+    **⚠️ Observação:** Caso o arquivo não contenha as colunas necessárias, ajustes podem ser feitos 
+    diretamente no Excel antes do upload.
+    """
+)
 
 # Sidebar - Navegação e Upload
 st.sidebar.title("📌 Controles")
@@ -100,4 +133,4 @@ if uploaded_file:
         st.plotly_chart(fig6, use_container_width=True)
 
 else:
-       st.info("⏳ Carregue um arquivo para iniciar a análise", icon="ℹ️")
+    st.info("⏳ Carregue um arquivo para iniciar a análise", icon="ℹ️")
