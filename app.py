@@ -6,13 +6,14 @@ import plotly.express as px
 st.title("📈 Business Pro Analytics")
 st.subheader("Transforme seus dados em decisões estratégicas!")
 
-# Exibe as instruções apenas se nenhum arquivo for carregado
-if not st.sidebar.file_uploader("Carregar Dados", type=["xlsx"]):
+# File uploader para carregar dados
+uploaded_file = st.sidebar.file_uploader("Carregar Dados", type=["xlsx"])
+if not uploaded_file:
     st.markdown(
         """
         Este aplicativo foi desenvolvido para ajudar pequenos empreendedores e autônomos a compreender seus 
         dados de vendas de forma intuitiva através de dashboards interativos.
-
+        
         **Para começar, carregue um arquivo Excel (.xlsx) contendo os seguintes dados mínimos:**
         - 📅 **Coluna de Data:** Indica a data da transação ou evento.
         - 💰 **Coluna de Valores:** Representa o faturamento ou montante da transação.
@@ -39,6 +40,7 @@ if not st.sidebar.file_uploader("Carregar Dados", type=["xlsx"]):
         diretamente no Excel antes do upload.
         """
     )
+    st.stop()
 
 # Sidebar - Navegação e Upload
 st.sidebar.title("📌 Controles")
