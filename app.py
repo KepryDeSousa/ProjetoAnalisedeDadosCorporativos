@@ -6,14 +6,18 @@ import plotly.express as px
 st.title("📈 Business Pro Analytics")
 st.subheader("Transforme seus dados em decisões estratégicas!")
 
-# File uploader para carregar dados
+# Sidebar - Navegação e Upload
+st.sidebar.title("📌 Controles")
+page = st.sidebar.radio("Navegação", ["📊 Visão Geral", "📈 Estatísticas", "📉 Visualização", "📅 Tendências"])
 uploaded_file = st.sidebar.file_uploader("Carregar Dados", type=["xlsx"])
+
+# Exibir Markdown inicial apenas quando nenhum arquivo for carregado
 if not uploaded_file:
     st.markdown(
         """
         Este aplicativo foi desenvolvido para ajudar pequenos empreendedores e autônomos a compreender seus 
         dados de vendas de forma intuitiva através de dashboards interativos.
-        
+
         **Para começar, carregue um arquivo Excel (.xlsx) contendo os seguintes dados mínimos:**
         - 📅 **Coluna de Data:** Indica a data da transação ou evento.
         - 💰 **Coluna de Valores:** Representa o faturamento ou montante da transação.
@@ -40,12 +44,8 @@ if not uploaded_file:
         diretamente no Excel antes do upload.
         """
     )
-    st.stop()
-
-# Sidebar - Navegação e Upload
-st.sidebar.title("📌 Controles")
-page = st.sidebar.radio("Navegação", ["📊 Visão Geral", "📈 Estatísticas", "📉 Visualização", "📅 Tendências"])
-uploaded_file = st.sidebar.file_uploader("Carregar Dados", type=["xlsx"])
+   
+    
 
 # Processamento de Dados
 if uploaded_file:
@@ -111,7 +111,7 @@ if uploaded_file:
         fig4 = px.line(df_temp, x=date_col, y=value_col, title="Evolução Temporal")
         st.plotly_chart(fig4, use_container_width=True)
         
-        # Tendência por Categoria
+        # Tendência por Categoria (Sua Funcionalidade Original)
         if category_col in df.columns:
             st.subheader("📈 Tendência por Categoria")
             df_cat = df.groupby([date_col, category_col])[value_col].sum().reset_index()
@@ -125,7 +125,7 @@ if uploaded_file:
                           title="Evolução por Categoria")
             st.plotly_chart(fig5, use_container_width=True)
 
-        # Sazonalidade
+        # Sazonalidade (Versão Aprimorada)
         st.subheader("📅 Padrões Sazonais")
         df['Mês'] = df[date_col].dt.month_name()
         df_saz = df.groupby(['Mês', category_col])[value_col].sum().reset_index()
